@@ -1,0 +1,43 @@
+
+cliente{
+    nome
+    cognome
+}
+
+domicili_cliente{
+id_cliente
+id_domicilio
+}
+
+domicilio{
+    via
+    citta
+    cap
+    civico
+}
+
+fatturazione{
+codice
+dataEmissione
+importo
+dataScadenza
+tipologia String
+id_domicilio
+}
+
+pagamento{
+id_fatturazione
+id_cliente
+dataPagamento
+}
+
+
+endpoint che trovi gli utenti in base a uno o più dei seguenti parametri
+{
+fatture pagate(true o false)
+città
+cognomeEONome
+codiceFattura
+tipologiaFattura
+}
+l'endpoint sarà paginato, con il numero pagina da pathvariabile e il numero di elementi fisso a 50
