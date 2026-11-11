@@ -1,34 +1,37 @@
 
 cliente{
-    nome
-    cognome
+    id bigint primary key autoincrement
+    nome varchar(255) not null
+    cognome varchar(255) not null
 }
 
 domicili_cliente{
-id_cliente
-id_domicilio
+id_cliente bigint foreignkey -> cliente(id)
+id_domicilio bigint foreingKey -> domicilio(id)
 }
 
 domicilio{
-    via
-    citta
-    cap
-    civico
+    id bigint primarykey autoincrement
+    via varchar(255) not null
+    citta varchar(255) not null
+    cap varchar(255) not null
+    civico varchar(255)
 }
 
 fatturazione{
-codice
-dataEmissione
-importo
-dataScadenza
-tipologia String
-id_domicilio
+id bigint primaryKey autoincrement
+codice varchar(255) not null
+dataEmissione date notNull
+importo double notnull
+dataScadenza date notnull
+tipologia String notnull
+id_domicilio bigint foreignkey domicilio(id)
 }
 
 pagamento{
-id_fatturazione
-id_cliente
-dataPagamento
+id_fatturazione foreignkey fatturazione(id)
+id_cliente foreignkey cliente(id)
+dataPagamento date notnull
 }
 
 
