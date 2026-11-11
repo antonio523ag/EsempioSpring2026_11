@@ -5,7 +5,7 @@ import dev.antoniogrillo.primo.entity.Indirizzo;
 
 public interface IndirizzoService {
 
-    public boolean aggiungiIndirizzo(Indirizzo i);
+    boolean aggiungiIndirizzo(Indirizzo i);
 
-    IndirizzoResponse getById(long id);
+    Indirizzo getById(long id);
 }

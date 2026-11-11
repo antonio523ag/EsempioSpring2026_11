@@ -21,23 +21,12 @@ public class IndirizzoServiceJpa implements IndirizzoService {
 
     @Override
     public boolean aggiungiIndirizzo(Indirizzo i) {
-        if(i.getCap()==null||i.getCap().length()!=5){
-            throw new DatiNonValidiException("cap","il cap deve essere presente e contenere 5 caratteri");
-        }
-        if(i.getCitta()==null||i.getCitta().isBlank()){
-            throw new DatiNonValidiException("citta","devi inserire una città per poter inserire un indirizzo");
-        }
-        if(i.getVia()==null||i.getVia().isBlank()){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"la via non può essere null");
-        }
         repository.save(i);
         return true;
     }
 
     @Override
-    public IndirizzoResponse getById(long id) {
-        Indirizzo i= repository.findById(id).orElse(null);
-        if(i==null)return null;
-        return mapper.toIndirizzoResponse(i);
+    public Indirizzo getById(long id) {
+        return repository.findById(id).orElse(null);
     }
 }

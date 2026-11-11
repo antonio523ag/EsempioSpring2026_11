@@ -19,7 +19,6 @@ public class Immobile {
     @Column(name = "larghezza",nullable = false)
     private int metratura;
     private double prezzo;
-    @Transient
     private Tipologia tipologia;
     @ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
     @JoinColumn(name = "id_indirizzo",nullable = false)

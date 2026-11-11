@@ -1,8 +1,10 @@
 package dev.antoniogrillo.primo.mapper;
 
+import dev.antoniogrillo.primo.dto.persona.request.RegistraPersonaDTO;
 import dev.antoniogrillo.primo.dto.persona.response.PersonaDTO;
 import dev.antoniogrillo.primo.dto.persona.response.PersonaPerIndirizzoResponse;
 import dev.antoniogrillo.primo.entity.Persona;
+import dev.antoniogrillo.primo.entity.Ruolo;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -36,5 +38,16 @@ public class PersonaMapper {
 
     public List<PersonaDTO> toPersonaDTO(List<Persona> p){
         return p==null||p.isEmpty()?new ArrayList<>():p.stream().map(this::toPersonaDTO).toList();
+    }
+
+    public Persona toPersona(RegistraPersonaDTO request) {
+        Persona p=new Persona();
+        p.setNome(request.nome());
+        p.setCognome(request.cognome());
+        p.setEmail(request.email());
+        p.setDataNascita(request.dataNascita());
+        p.setPassword(request.password());
+        p.setRuolo(Ruolo.CLIENTE);
+        return p;
     }
 }

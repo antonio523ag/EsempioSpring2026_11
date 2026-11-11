@@ -3,3 +3,4 @@ spring:
     error:
       include-binding-errors: always
       include-stacktrace: always
+      include-message: always
