@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @Service
 public class ImmobileServiceJpa implements ImmobileService {
 
@@ -21,5 +23,10 @@ public class ImmobileServiceJpa implements ImmobileService {
     @Override
     public Immobile findById(long idImmobile) {
         return repository.findById(idImmobile).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"Immobile non trovato"));
+    }
+
+    @Override
+    public List<Immobile> getAll() {
+        return repository.findAll();
     }
 }

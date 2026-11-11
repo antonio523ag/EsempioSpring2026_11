@@ -28,4 +28,6 @@ public interface PersonaService {
                  String password);
 
     Persona findByEmail(String email);
+
+    List<Persona> getAll();
 }

@@ -1,0 +1,39 @@
+type Utente{
+    id: ID!
+    nome: String!
+    cognome: String!
+    email: String
+    dataDiNascita: String
+    eta: Int
+    noleggi: [Noleggio!]
+}
+
+type Noleggio{
+    id: ID!
+    utente: Utente!
+    immobile: Immobile!
+    dataInizio:String
+    dataFine:String
+}
+
+type Immobile{
+    id: ID!
+    metratura: Int
+    prezzo: Float
+}
+type Query{
+    getImmobili:[Immobile!]!
+    getPersone:[Utente!]!
+}
+
+input CreaPersonaRequest{
+    nome:String!
+    cognome:String!
+    email:String!
+    password:String!
+    dataNascita:String!
+}
+
+type Mutation{
+    registaUtente(input:CreaPersonaRequest):Boolean
+}

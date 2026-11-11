@@ -21,4 +21,6 @@ public interface PersonaRepository extends JpaRepository<Persona,Long> {
     Optional<Persona> findByEmail(String email);
 
     List<Persona> findAllByABitazione(String aBitazione);
+
+
 }

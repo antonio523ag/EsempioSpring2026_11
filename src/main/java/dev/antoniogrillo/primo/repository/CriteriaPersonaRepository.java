@@ -5,6 +5,7 @@ import dev.antoniogrillo.primo.entity.Immobile;
 import dev.antoniogrillo.primo.entity.Indirizzo;
 import dev.antoniogrillo.primo.entity.Persona;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.criteria.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -12,10 +13,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-@RequiredArgsConstructor
 public class CriteriaPersonaRepository {
-    private final EntityManager manager;
-    private final PersonaRepository personaRepository;
+    @PersistenceContext
+    private  EntityManager manager;
 
     public List<Persona> getPersoneFromCampo(String campo,String valore){
         //prima prendo l'oggetto per creare il tutto

@@ -21,7 +21,7 @@ public class Immobile {
     private double prezzo;
     private Tipologia tipologia;
     @ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
-    @JoinColumn(name = "id_indirizzo",nullable = false)
+    @JoinColumn(name = "id_indirizzo")
     private Indirizzo indirizzo;
 
 }

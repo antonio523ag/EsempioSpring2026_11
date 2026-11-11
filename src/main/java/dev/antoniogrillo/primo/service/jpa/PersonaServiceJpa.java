@@ -5,16 +5,19 @@ import dev.antoniogrillo.primo.dto.persona.request.RegistraPersonaDTO;
 import dev.antoniogrillo.primo.dto.persona.request.RicercaPersonaRequest;
 import dev.antoniogrillo.primo.dto.persona.response.PersonaDTO;
 import dev.antoniogrillo.primo.entity.Persona;
+import dev.antoniogrillo.primo.exception.GraphQLException;
 import dev.antoniogrillo.primo.mapper.PersonaMapper;
 import dev.antoniogrillo.primo.repository.CriteriaPersonaRepository;
 import dev.antoniogrillo.primo.repository.PersonaRepository;
 import dev.antoniogrillo.primo.service.def.JWTService;
 import dev.antoniogrillo.primo.service.def.PersonaService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.graphql.execution.ErrorType;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -39,6 +42,9 @@ public class PersonaServiceJpa implements PersonaService {
 
     @Override
     public void registra(Persona request) {
+        if(request.getDataNascita().isAfter(LocalDate.now().minusYears(18))){
+            throw new GraphQLException(ErrorType.BAD_REQUEST,"La persona deve essere maggiorenne");
+        }
         personaRepository.save(request);
     }
 
@@ -51,5 +57,10 @@ public class PersonaServiceJpa implements PersonaService {
     @Override
     public Persona findByEmail(String email) {
         return personaRepository.findByEmail(email).orElse(null);
+    }
+
+    @Override
+    public List<Persona> getAll() {
+        return personaRepository.findAll();
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -25,5 +26,10 @@ public class NoleggioServiceJpa implements NoleggioService {
         //controllo se l'immobile è disponibile nel periodo specificato
         //se no
         throw new ResponseStatusException(HttpStatus.CONFLICT,"Immobile non disponibile nel periodo specificato");
+    }
+
+    @Override
+    public List<Noleggio> getNoleggiByPersonaList(List<Long> idPersone) {
+        return noleggioRepository.findAllByNoleggiatore_idIn(idPersone);
     }
 }
