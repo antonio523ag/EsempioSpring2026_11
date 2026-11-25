@@ -12,6 +12,12 @@
                     onMismatch="DENY"
                 />
         </Console>
+        <JDBC name="Database" tableName="log">
+            <Column name="log_level" pattern="%level"/>
+            <Column name="log_message" pattern="%msg"/>
+            <Column name="log_date" pattern="%date"/>
+            <DriverManager connectionString="jdbc:mysql://localhost:3306/log" driverClassName="com.mysql.cj.jdbc.Driver" user="root" password="password"/>
+        </JDBC>
         <RollingFile name="rolling_info" fileName="${cartellaDestinazione}\rolling_info.log" filePattern="${cartellaDestinazione}\rolling_info-%i.log">
                 <PatternLayout pattern="${patter}"/>
             <Policies>
@@ -32,6 +38,14 @@
                               onMatch="ACCEPT"
                               onMismatch="DENY"
             />
+        </RollingFile>
+        <RollingFile name="giornaliero" fileName="${cartellaDestinazione}/giornaliero.log" filePattern="${cartellaDestinazione}/giornaliero-%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="${patter}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+                <DefaultRolloverStrategy max="3"/>
+            </Policies>
+
         </RollingFile>
         <RollingFile name="rolling_error" fileName="${cartellaDestinazione}/rolling_error.log" filePattern="${cartellaDestinazione}/rolling_error-%i.log">
             <PatternLayout pattern="${patter}"/>
