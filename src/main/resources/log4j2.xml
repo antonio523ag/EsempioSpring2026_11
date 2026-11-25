@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+        <Property name="patter" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %p %msg %n"/>
+        <Property name="cartellaDestinazione" value="C:\Users\conta\Desktop\Log"/>
+    </Properties>
+    <Appenders>
+        <Console name="consoleLog" target="SYSTEM_OUT">
+                <PatternLayout pattern="${patter}"/>
+                <LevelRangeFilter minLevel="FATAL" maxLevel="INFO"
+                    onMatch="ACCEPT"
+                    onMismatch="DENY"
+                />
+        </Console>
+        <RollingFile name="rolling_info" fileName="${cartellaDestinazione}\rolling_info.log" filePattern="${cartellaDestinazione}\rolling_info-%i.log">
+                <PatternLayout pattern="${patter}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="20000KB" />
+            </Policies>
+            <LevelRangeFilter minLevel="INFO" maxLevel="INFO"
+                    onMatch="ACCEPT"
+                    onMismatch="DENY"
+                />
+        </RollingFile>
+
+        <RollingFile name="rolling_debug" fileName="${cartellaDestinazione}/rolling_debug.log" filePattern="${cartellaDestinazione}/rolling_debug-%i.log">
+            <PatternLayout pattern="${patter}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="20000KB" />
+            </Policies>
+            <LevelRangeFilter minLevel="DEBUG" maxLevel="DEBUG"
+                              onMatch="ACCEPT"
+                              onMismatch="DENY"
+            />
+        </RollingFile>
+        <RollingFile name="rolling_error" fileName="${cartellaDestinazione}/rolling_error.log" filePattern="${cartellaDestinazione}/rolling_error-%i.log">
+            <PatternLayout pattern="${patter}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="20000KB" />
+            </Policies>
+            <LevelRangeFilter minLevel="ERROR" maxLevel="ERROR"
+                              onMatch="ACCEPT"
+                              onMismatch="DENY"
+            />
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="TRACE">
+            <AppenderRef ref="consoleLog"/>
+            <AppenderRef ref="rolling_debug"/>
+            <AppenderRef ref="rolling_error"/>
+            <AppenderRef ref="rolling_info"/>
+        </Root>
+    </Loggers>
+
+
+</Configuration>
