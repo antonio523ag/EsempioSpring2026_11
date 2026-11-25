@@ -21,4 +21,6 @@ public interface PersonaControllerFacade {
     PersonaDTO covert(UsernamePasswordAuthenticationToken token);
 
     PersonaDTO covert(Persona persona);
+
+    List<PersonaDTO> getAll();
 }

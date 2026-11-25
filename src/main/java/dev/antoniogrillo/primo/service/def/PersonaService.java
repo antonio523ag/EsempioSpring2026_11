@@ -24,7 +24,7 @@ public interface PersonaService {
                 @Email(message = "l'email deve essere valida")
                 String email,
                  @NotNull(message = "la password deve essere presente")
-                 @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$", message = "la password deve contenere almeno 8 caratteri, una maiuscola, una minuscola, un numero e un carattere speciale")
+                 @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$!%^&+=])(?=\\S+$).{8,}$", message = "la password deve contenere almeno 8 caratteri, una maiuscola, una minuscola, un numero e un carattere speciale")
                  String password);
 
     Persona findByEmail(String email);

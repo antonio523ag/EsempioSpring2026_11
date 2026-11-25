@@ -58,4 +58,11 @@ public class PersonaControllerFacadeImpl implements PersonaControllerFacade {
     public PersonaDTO covert(Persona persona) {
         return mapper.toPersonaDTO(persona);
     }
+
+    @Override
+    public List<PersonaDTO> getAll() {
+        List<Persona> persone=service.getAll();
+        return mapper.toPersonaDTO(persone);
+
+    }
 }

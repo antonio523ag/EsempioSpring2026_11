@@ -33,6 +33,7 @@ public class GestorePath {
                         .requestMatchers("/cliente/getProfilo").hasRole(Ruolo.CLIENTE.name())
                         .requestMatchers("/cliente/**").hasRole(Ruolo.CLIENTE.name())
                         .requestMatchers("/getAbitazione").hasAnyRole(Ruolo.CLIENTE.name(),Ruolo.VENDITORE.name())
+                        .requestMatchers("/indirizzo/**").authenticated()
                         .anyRequest().permitAll()
                 ).authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)

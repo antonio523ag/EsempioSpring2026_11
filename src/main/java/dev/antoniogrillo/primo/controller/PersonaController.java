@@ -31,6 +31,11 @@ public class PersonaController {
         return ResponseEntity.ok(facade.filtra(request));
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<PersonaDTO>> getAll(){
+        return ResponseEntity.ok(facade.getAll());
+    }
+
     @PostMapping("/registrati")
     public ResponseEntity<Void> registrati(@RequestBody RegistraPersonaDTO request){
         facade.registra(request);
